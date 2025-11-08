@@ -1,0 +1,20 @@
+{
+  "name": "web-dev-project",
+  "version": "1.0.0",
+  "description": "The project focus to make a fully functional e-commerce website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umeshvishwakrma/web-dev-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/umeshvishwakrma/web-dev-project/issues"
+  },
+  "homepage": "https://github.com/umeshvishwakrma/web-dev-project#readme"
+}
