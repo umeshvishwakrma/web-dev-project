@@ -1,19 +1,30 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./login.css";
 import email_icon from "../components/email.png";
 import password_icon from "../components/password.png";
 import person_icon from "../components/person.png";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
-  const [action, setAction] = useState("Sign Up");
+  const [action, setAction] = useState("Login"); // 👈 Default to Login mode
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // 👇 If redirected from "Add to Cart", stay in Login mode
+  useEffect(() => {
+    if (location.state?.mode === "signup") setAction("Sign Up");
+    else setAction("Login");
+  }, [location.state]);
 
   const handleLogin = () => {
-    login(); // mark user as logged in
-    navigate("/"); // redirect to home page
+    if (action === "Login") {
+      login(); // mark user as logged in
+      navigate("/"); // redirect to home
+    } else {
+      setAction("Login"); // switch to login mode instead of logging in
+    }
   };
 
   return (
