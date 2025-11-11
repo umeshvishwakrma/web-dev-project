@@ -8,7 +8,7 @@
     padding-bottom :30px;
     border-radius: 5px;
 }
-.header{
+.headerL{
     display:flex;
     flex-direction: column;
     align-items: center;
