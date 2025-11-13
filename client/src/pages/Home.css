@@ -58,8 +58,6 @@
 .offer-banner p {
   font-size: 1rem;
 }
-
-/* Original and discounted price styling */
 .original-price {
   text-decoration: line-through;
   color: #999;
@@ -82,4 +80,41 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+.featured-deals {
+  padding: 20px 40px;
+  background-color: #111;
+  color: #fff;
+  border-top: 2px solid #ff4d4d;
+  border-bottom: 2px solid #ff4d4d;
+  text-align: center;
+}
+
+.featured-deals h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+.deals-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  justify-content: center; /* ✅ Centers the content in wide screens */
+  scroll-snap-type: x mandatory;
+  padding: 10px 0;
+}
+
+.deals-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+
+.deal-card {
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 15px;
+  width: 180px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
 }

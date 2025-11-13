@@ -6,7 +6,8 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext"; // only if you have one
-
+import About from "./pages/About";
+import Offers from "./pages/Offers";
 function App() {
   return (
     <Router>
@@ -17,6 +18,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/offers" element={<Offers />} />
           </Routes>
         </CartProvider>
       </AuthProvider>

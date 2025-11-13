@@ -1,0 +1,60 @@
+.about-page {
+  color: white;
+  background-color: #121212;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.about-hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(90deg, #0f0f0f, #1a1a1a);
+}
+
+.about-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #ffcc00;
+}
+
+.about-hero p {
+  font-size: 1.1rem;
+  color: #ddd;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.about-text h2 {
+  color: #ffcc00;
+  margin-top: 30px;
+}
+
+.about-text p {
+  line-height: 1.7;
+  color: #ccc;
+}
+
+.about-text ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 15px;
+}
+
+.about-text li {
+  background-color: #1e1e1e;
+  margin: 8px 0;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: #ddd;
+}
+
+.about-footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid #333;
+  color: #aaa;
+}
