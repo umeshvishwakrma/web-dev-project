@@ -37,3 +37,49 @@
   gap: 30px;
   flex-wrap: wrap;
 }
+/* Offer banner */
+.offer-banner {
+  background: linear-gradient(90deg, #ff5f6d, #ffc371);
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease-in-out;
+}
+
+.offer-banner h2 {
+  font-size: 1.6rem;
+  margin-bottom: 5px;
+}
+
+.offer-banner p {
+  font-size: 1rem;
+}
+
+/* Original and discounted price styling */
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.discounted-price {
+  color: #e60000;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Optional subtle fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -76,3 +76,30 @@
 .checkout-btn:hover {
   background-color: #0056b3;
 }
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.qty-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.qty-btn:hover {
+  background-color: #0056b3;
+}
+
+.qty {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}

@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "./Cart.css";
+import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
-  // ✅ Cart state (initially with some dummy data)
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Smartphone", price: 19999, quantity: 1, img: "/assets/phone.jpg" },
-    { id: 2, name: "Headphones", price: 2499, quantity: 2, img: "/assets/headphones.jpg" },
-  ]);
-
-  // ✅ Function to remove an item
-  const handleRemove = (id) => {
-    const updatedCart = cartItems.filter((item) => item.id !== id);
-    setCartItems(updatedCart);
-  };
-
-  // ✅ Calculate total dynamically
-  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const {
+    cartItems,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    total,
+  } = useContext(CartContext);
+const navigate = useNavigate();
 
   return (
     <div className="cart-container">
@@ -31,10 +27,30 @@ function Cart() {
               <div className="cart-item-details">
                 <h3>{item.name}</h3>
                 <p>Price: ₹{item.price}</p>
-                <p>Quantity: {item.quantity}</p>
 
-                {/* ✅ Remove Button */}
-                <button className="remove-btn" onClick={() => handleRemove(item.id)}>
+                {/* ✅ Quantity Controls */}
+                <div className="quantity-controls">
+                  <button
+                    className="qty-btn"
+                    onClick={() => decreaseQuantity(item.id)}
+                  >
+                    –
+                  </button>
+                  <span className="qty">{item.quantity}</span>
+                  <button
+                    className="qty-btn"
+                    onClick={() => increaseQuantity(item.id)}
+                  >
+                    +
+                  </button>
+                </div>
+
+                <p>Subtotal: ₹{item.price * item.quantity}</p>
+
+                <button
+                  className="remove-btn"
+                  onClick={() => removeFromCart(item.id)}
+                >
                   Remove
                 </button>
               </div>
@@ -43,11 +59,12 @@ function Cart() {
         </div>
       )}
 
-      {/* ✅ Show total only if cart not empty */}
       {cartItems.length > 0 && (
         <div className="cart-summary">
           <h3>Total: ₹{total}</h3>
-          <button className="checkout-btn">Proceed to Checkout</button>
+          <button className="checkout-btn" 
+          onClick={() => navigate("/checkout")}
+          >Proceed to Checkout</button>
         </div>
       )}
     </div>
@@ -55,3 +72,4 @@ function Cart() {
 }
 
 export default Cart;
+
