@@ -36,3 +36,29 @@
 .nav-btn:hover {
   background-color: #555;
 }
+.header-right{
+    display: flex;
+    flex-direction: column;
+}
+.nav-btn1{
+    margin-left: 10px;
+    text-decoration: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+.nav-btn1:hover {
+  background-color: #555;
+}
+
+.nav-btn2{
+    margin-left: 29px;
+    text-decoration: none;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    width: 40%;
+}
+

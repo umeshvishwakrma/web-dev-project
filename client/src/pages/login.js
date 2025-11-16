@@ -1,75 +1,99 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState} from "react";
 import "./login.css";
 import email_icon from "../components/email.png";
 import password_icon from "../components/password.png";
-import person_icon from "../components/person.png";
-import { AuthContext } from "../context/AuthContext";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [action, setAction] = useState("Login"); // 👈 Default to Login mode
-  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // 👇 If redirected from "Add to Cart", stay in Login mode
-  useEffect(() => {
-    if (location.state?.mode === "signup") setAction("Sign Up");
-    else setAction("Login");
-  }, [location.state]);
+  const handleLogin = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-  const handleLogin = () => {
-    if (action === "Login") {
-      login(); // mark user as logged in
-      navigate("/"); // redirect to home
-    } else {
-      setAction("Login"); // switch to login mode instead of logging in
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message);
+        return;
+      }
+  
+      // Save the user name
+      localStorage.setItem(
+      "user",
+      JSON.stringify({ username: data.username })
+    );
+    localStorage.setItem("token", data.token);
+    console.log("Saved user →", JSON.parse(localStorage.getItem("user")));
+
+
+      navigate("/"); // redirect home
+
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong. Try again.");
     }
   };
 
   return (
     <div className="container">
       <div className="headerL">
-        <div className="text">{action}</div>
+        <div className="text">Login</div>
         <div className="underline"></div>
       </div>
 
       <div className="inputs">
-        {action === "Login" ? null : (
-          <div className="input">
-            <img src={person_icon} alt="" />
-            <input type="text" placeholder="username" />
-          </div>
-        )}
         <div className="input">
           <img src={email_icon} alt="" />
-          <input type="email" placeholder="email" />
+          <input
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
+
         <div className="input">
           <img src={password_icon} alt="" />
-          <input type="password" placeholder="password" />
+          <input
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
       </div>
 
-      {action === "Sign Up" ? null : (
-        <div className="forgot-password">
-          Forgot Password? <span>Click here</span>
-        </div>
-      )}
+      <div className="forgot-password">
+        Forgot Password? <span>Click here</span>
+      </div>
 
       <div className="submit-container">
         <div
-          className={action === "Login" ? "submit gray" : "submit"}
-          onClick={() => setAction("Sign Up")}
-        >
-          Sign Up
-        </div>
-        <div
-          className={action === "Sign Up" ? "submit gray" : "submit"}
+          className="submit"
           onClick={handleLogin}
         >
           Login
         </div>
+      </div>
+
+      <div className="User">
+        <p>
+          New user?{" "}
+          <Link
+            to="/signup"
+            style={{ color: "blue", textDecoration: "underline" }}
+          >
+            Sign up
+          </Link>
+        </p>
       </div>
     </div>
   );

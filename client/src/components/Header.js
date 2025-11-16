@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { CartContext } from "../context/CartContext";
@@ -6,8 +6,32 @@ import { CartContext } from "../context/CartContext";
 function Header({ toggleTheme }) {
   const { cartItems } = useContext(CartContext);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
+    useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    fetch("http://localhost:5000/api/auth/me", {
+      headers: { Authorization: "Bearer " + token },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.username) setUser(data); // <-- setting user data
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  const usr = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+    window.location.reload(); // refresh header instantly
+  };
+    
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
@@ -54,9 +78,14 @@ function Header({ toggleTheme }) {
         <Link to="/cart" className="cart-icon">
           🛒 <span className="cart-count">{cartItems.length}</span>
         </Link>
-
-        <Link to="/login" className="nav-btn">Login</Link>
-
+        {{user}? (
+            <>
+            <span className="nav-btn1"> 👤 {usr?.username}</span>
+            <button onClick={handleLogout} className="nav-btn2">Logout</button>
+            </>
+        ) : (
+            <Link to="/login" className="nav-btn1">Login</Link>
+        )}
         {toggleTheme && (
           <button onClick={toggleTheme} className="theme-btn">🌗</button>
         )}
@@ -66,6 +95,3 @@ function Header({ toggleTheme }) {
 }
 
 export default Header;
-
-
-
