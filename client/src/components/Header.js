@@ -78,7 +78,7 @@ function Header({ toggleTheme }) {
         <Link to="/cart" className="cart-icon">
           🛒 <span className="cart-count">{cartItems.length}</span>
         </Link>
-        {{user}? (
+        {usr? (
             <>
             <span className="nav-btn1"> 👤 {usr?.username}</span>
             <button onClick={handleLogout} className="nav-btn2">Logout</button>
