@@ -1,4 +1,6 @@
 import React, { useState} from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 import "./login.css";
 import email_icon from "../components/email.png";
 import password_icon from "../components/password.png";
@@ -6,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,12 +29,15 @@ const Login = () => {
       }
   
       // Save the user name
-      localStorage.setItem(
-      "user",
-      JSON.stringify({ username: data.username })
-    );
-    localStorage.setItem("token", data.token);
-    console.log("Saved user →", JSON.parse(localStorage.getItem("user")));
+    const userData = {
+      username: data.username,
+      email:email,
+    };
+
+    // Save user globally (AuthContext)
+    login(userData,data.token);
+
+    console.log("Saved user →", userData);
 
 
       navigate("/"); // redirect home
