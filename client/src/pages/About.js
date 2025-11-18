@@ -21,7 +21,7 @@ function About() {
             home essentials, and more — all at unbeatable prices.
           </p>
           <p>
-            Founded in 2024, our goal is to make online shopping in India smoother,  
+            Founded in 2025, our goal is to make online shopping in India smoother,  
             faster, and more rewarding for everyone.  
             From cutting-edge gadgets to trendy apparel, we handpick every item  
             to ensure great quality and affordability.

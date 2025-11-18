@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from 'react';
 import "./Home.css";
 import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
@@ -28,6 +28,13 @@ function Home() {
   const { addToCart } = useContext(CartContext);
   const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const featuredRef = useRef(null);
+
+  // Scroll function
+  const scrollToFeatured = () => {
+    featuredRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleAddToCart = (p) => {
     if (!isLoggedIn) {
@@ -74,12 +81,12 @@ function Home() {
         <div className="hero-content">
           <h1>Shop the Best Deals Today</h1>
           <p>Exclusive discounts on top brands. Limited time only!</p>
-          <button className="shop-btn">Shop Now</button>
+          <button onClick={scrollToFeatured} className="shop-btn">Shop Now</button>
         </div>
       </section>
 
       {/* 🛒 Products Section */}
-      <section className="products">
+      <section className="products" ref={featuredRef}>
         <h2>Featured Products</h2>
         <div className="product-grid">
           {products.map((p) => (
