@@ -24,7 +24,7 @@ function Header({ toggleTheme }) {
         <Link to="/">
           <img src="/logo.jpg" alt="Company Logo" className="company-logo" />
         </Link>
-        <h1 className="brand-name">Valdivian.in</h1>
+        <h1 className="brand-name">‎ Valdivian.in</h1>
       </div>
       <div className="flag-section">
   🇮🇳 <span className="country-label">India</span>
@@ -35,7 +35,9 @@ function Header({ toggleTheme }) {
       <nav className="nav-links">
         <Link to="/" className="nav-btn">Home</Link>
         <Link to="/offers" className="nav-btn">Offers 🎁</Link>
-        <Link to="/wishlist" className="nav-btn">Wishlist ❤️</Link>
+        <Link to="/cart" className="nav-btn">
+          🛒 Cart (<span className="cart-count">{cartItems.length}</span>)
+        </Link>
         <Link to="/about" className="nav-btn">About</Link>
       </nav>
       
@@ -53,9 +55,6 @@ function Header({ toggleTheme }) {
           <button type="submit" className="search-btn">🔍</button>
         </form>
 
-        <Link to="/cart" className="cart-icon">
-          🛒 <span className="cart-count">{cartItems.length}</span>
-        </Link>
         {user? (
             <>
             <span className="nav-btn1"> 👤 {user.username}</span>
