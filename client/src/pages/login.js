@@ -77,10 +77,6 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="forgot-password">
-        Forgot Password? <span>Click here</span>
-      </div>
-
       <div className="submit-container">
         <div
           className="submit"

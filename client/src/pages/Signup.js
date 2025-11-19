@@ -12,12 +12,17 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!name || !email || !password) {
       alert("Please fill all fields");
+      return;
+    }
+    if (emailError) {
+      alert("Please enter a valid email.");
       return;
     }
 
@@ -57,10 +62,23 @@ const Signup = () => {
         <div className="input">
           <img src={email_icon} alt="" />
           <input
-            type="email"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
+  type="email"
+  placeholder="Email"
+  onChange={(e) => {
+    const value = e.target.value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(value.trim())) {
+      setEmail(value);
+      setEmailError("Invalid email format");
+    } else {
+      setEmail(value.trim());
+      setEmailError(""); 
+    }
+  }}
+/>
+{emailError && <p className="error-text">{emailError}</p>}
+
         </div>
 
         <div className="input">
