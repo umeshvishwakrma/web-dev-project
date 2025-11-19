@@ -1,5 +1,7 @@
 🛒 Full-Stack E-Commerce Website
 
+Git hub repository link: https://github.com/umeshvishwakrma/web-dev-project
+
 React + Node.js + MongoDB
 
 🚀 How to Run the Project (For Team Members)
@@ -56,4 +58,4 @@ http://localhost:3000
 
 ✔ Both frontend and backend must run
 ✔ .env is not pushed to GitHub — everyone creates their own
-✔ Use MongoDB Atlas or local MongoDB
+✔ Use MongoDB Atlas or local Mongo
