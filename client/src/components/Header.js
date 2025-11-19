@@ -24,7 +24,7 @@ function Header({ toggleTheme }) {
         <Link to="/">
           <img src="/logo.jpg" alt="Company Logo" className="company-logo" />
         </Link>
-        <h1 className="brand-name">‎ Valdivian.in</h1>
+        <h1 className="brand-name">‎ Valdivian</h1>
       </div>
       <div className="flag-section">
   🇮🇳 <span className="country-label">India</span>
